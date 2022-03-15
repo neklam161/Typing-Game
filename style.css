@@ -1,0 +1,60 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  
+}
+body{
+  color:white;
+  background-color:rgb(39, 33, 41);
+  font-family: 'Inconsolata', monospace;
+
+}
+.title{
+  text-align :center;
+  padding:20px;
+}
+.description{
+  text-align:center;
+}
+.content{
+  position: relative;
+  top:190px;
+  text-align:center;
+} 
+.text{
+  padding:30px;
+  border:4px solid white;
+  border-radius: 2px 2px 2px 2px;
+  margin:0 600px;
+  font-size:23px;
+
+}
+input{
+  margin-top: 25px;
+  width: 200px;
+  background-color: transparent;
+  outline: none;
+  border:none;
+  padding:20px; 
+  font-size:23px;
+  color:white;
+  text-align:center;
+}
+.left{
+  position: relative;
+  bottom:80px;
+  left:600px;
+  width:200px;
+}
+.right{
+  position: relative;
+  bottom:99px;
+  left:760px;
+  margin-right:200px;
+  width:200px;
+  
+}
+#message{
+  margin-top:25px;
+  font-size:20px;
+}
