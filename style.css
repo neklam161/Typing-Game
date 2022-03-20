@@ -18,43 +18,58 @@ body{
 }
 .content{
   position: relative;
-  top:190px;
+  top:100px;
   text-align:center;
+  
 } 
 .text{
   padding:30px;
   border:4px solid white;
   border-radius: 2px 2px 2px 2px;
-  margin:0 600px;
+  margin:0 200px;
   font-size:23px;
 
 }
 input{
   margin-top: 25px;
-  width: 200px;
+  width: 600px;
   background-color: transparent;
   outline: none;
   border:none;
-  padding:20px; 
+  padding:50px; 
   font-size:23px;
   color:white;
-  text-align:center;
+  border:1px solid white;
 }
 .left{
   position: relative;
-  bottom:80px;
+  bottom:55px;
   left:600px;
   width:200px;
+  font-size:23px;
 }
 .right{
   position: relative;
-  bottom:99px;
+  bottom:79px;
   left:760px;
   margin-right:200px;
   width:200px;
-  
+  font-size:23px;
 }
-#message{
-  margin-top:25px;
-  font-size:20px;
+
+#button{
+  margin-left:100px;
+  padding:15px 50px;
+  font-family: 'Inconsolata', monospace;
+  color:white;
+  background-color: transparent;
+  font-size:19px;
+  border:none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;;
+}
+.correct{
+  color:white;
+}
+.incorrect{
+  color:red;
 }

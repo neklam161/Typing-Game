@@ -19,11 +19,11 @@
   <h3 class="left">Timer: <span id="time"> 0</span></h3>
   <h3 class="right">Score: <span id="score">0</span></h3>
   <div class="text" >
-    <p id="current-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam optio impedit, quasi nihil inventore dolor? Nisi voluptatibus iste natus exercitationem incidunt quasi inventore omnis doloribus quas sapiente, eius sunt accusantium.</p>
+    <div id="current-text"></div> 
   </div>
   <div>
-    <input type="text" placeholder="Start typing..." id="wordinput" autofocus>
-    <p id="message"></p>
+    <input type="text" placeholder="Start typing..." id="wordinput" autofocus autocomplete="off">
+    <button id="button" onclick="init()">Restart</button>
   </div>
 </div>
   <script src="script.js"></script>

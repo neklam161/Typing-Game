@@ -1,101 +1,96 @@
 window.addEventListener('load',init)
-
-
-const levels={
-  easy:5,
-  medium:3,
-  hard:2
-}
-const currentLevel = levels.easy;
-
-let time= currentLevel;
+var min = 0;
+var sec = 0;
+let time;
 let score= 0;
-let isPlaying;
-
+let ingame=true;
+let characters = document.querySelector(".text")
 const wordInput = document.querySelector('#wordinput');
 const Currenttext = document.querySelector('#current-text');
 const timeDisplay = document.querySelector('#time');
 const message = document.querySelector('#message');
 const scoreDisplay = document.querySelector("#score");
-const sentences =['woman', 'possible', 'pipe', 'makeshift', 'children', 'eminent', 'reminiscent', 'acid', 'sticks', 'unadvised', 'unable', 'church', 'cute', 'learn', 'addition', 'greedy', 'tacky', 'zoom', 'blade', 'childlike', 'feeble', 'railway', 'doubtful', 'hideous', 'possessive', 'incompetent', 'actually', 'road', 'ignore', 'knife', 'heavy', 'greasy', 'legs', 'macho', 'connect', 'great', 'hesitant', 'tasty', 'phone', 'thundering', 'pencil', 'soothe', 'potato', 'one', 'grouchy', 'underwear', 'female', 'wide-eyed', 'strange', 'vacation' , 'hat',
-'river',
-'lucky',
-'statue',
-'generate',
-'stubborn',
-'cocktail',
-'runaway',
-'joke',
-'developer',
-'establishment',
-'hero',
-'javascript',
-'nutrition',
-'revolver',
-'echo',
-'siblings',
-'investigate',
-'horrendous',
-'symptom',
-'laughter',
-'magic',
-'master',
-'space',
-'definition'] ;
-
+const sentences =["I have always believed that each man makes his own happiness and is responsible for his own problems. It is a simple philosophy.","I wanna hang a map of the world in my house. Then I'm gonna put pins into all the locations that I've traveled to. But first, I'm gonna have to travel to the top two corners of the map so it won't fall down.","Never continue in a job you don't enjoy. If you're happy in what you're doing, you'll like yourself, you'll have inner peace. And if you have that, along with physical health, you will have had more success than you could possibly have imagined.","Don't be afraid. Be focused. Be determined. Be hopeful. Be empowered.","No one would have crossed the ocean if he could have gotten off the ship in the storm.","Appreciate those early influences and what they've done for you.","Be honest in your feelings, for they are the surest conduit to knowledge... ","The purpose of life is the investigation of the Sun, the Moon, and the heavens."];
+function button(){
+  wordInput.value ='';
+  scoreDisplay.innerText='00:00';
+  resetTimer()
+  clearTimeout(time)
+  showWord(sentences)
+}
 function init(){
-  showWord(sentences);
-
-  wordInput.addEventListener('input', startMatch);
-
-  setInterval(countdown,1000);
-
-  setInterval(checkStatus,50)
+  Currenttext.innerHTML=""
+   showWord(sentences).split('').forEach(char => {
+    const charSpan= document.createElement('span');
+    charSpan.innerText = char;
+    Currenttext.appendChild(charSpan);
+  })
+  button()
+  wordInput.addEventListener('input', startMatch,startTimer);
 }
 function showWord(sentences){
   const randIndex = Math.floor(Math.random()*sentences.length)
-  Currenttext.innerHTML= sentences[randIndex];
+  return sentences[randIndex]
 }
+function textInput() {
+  const arraytext=Currenttext.querySelectorAll('span')
+  const arrayvalue=wordInput.value.split('')
+  let correct =true
+  arraytext.forEach((charSpan,index)=>{
+    const character = arrayvalue[index]
+    if (character == null) {
+      charSpan.classList.remove('correct')
+      charSpan.classList.remove('incorrect')
+      correct = false
+    } else if (character === charSpan.innerText) {
+      charSpan.classList.add('correct')
+      charSpan.classList.remove('incorrect')
 
+    } else {
+      charSpan.classList.remove('correct')
+      charSpan.classList.add('incorrect')
+      correct = false
+    }
+  })
+  if (correct){
+    wordInput.value ='';  
+    clearTimeout(time)
+    scoreDisplay.innerHTML=timeDisplay.innerHTML;
+  }
+}
 function startMatch(){
-  if(matchsentences()){
-    isPlaying = true;
-    time = currentLevel;
-    showWord(sentences);
-    wordInput.value = '';
-    score++;
+  if (ingame === true){
+    startTimer()
+    wordInput.removeEventListener('input',startTimer);
+    ingame=false;
   }
-
-  if(score === -1){
-    scoreDisplay.innerHTML = 0;
-  }else{
-    scoreDisplay.innerHTML = score ;
-  }
-  
+  textInput()
+}
+function startTimer() {
+  sec = parseInt(sec);
+  min = parseInt(min);
+  sec = sec + 1;
+    if (sec == 60) {
+      min = min + 1;
+      sec = 0;
+    }
+    if (min == 60) {
+      min = 0;
+      sec = 0;
+    }
+    if (sec < 10 || sec == 0) {
+      sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+      min = '0' + min;
+    }
+    timeDisplay.innerHTML =  min + ':' + sec;
+      time=setTimeout("startTimer()", 1000);
 }
 
-function matchsentences(){
-  if(wordInput.value === Currenttext.innerHTML){
-    message.innerHTML ='correct'
-    return true;
-  }else {
-    message.innerHTML = ''
-    return false;
-  }
-}
-
-function countdown(){
-  if(time>0){
-    time--;
-
-  }else if (time===0){
-    isPlaying=false;
-  }
-  timeDisplay.innerHTML = time;
-}
-function checkStatus(){
-  if(!isPlaying && time === 0){
-    message.innerHTML = 'Game over!';
-    score=-1;
-  }
+function resetTimer() {
+  timeDisplay.innerHTML = '00:00';
+  min="0"
+  sec="0"
+  ingame=true; 
 }
