@@ -4,4 +4,4 @@ Ive spend a lot of time learning how to type fast and playing on typeracer
 so why dont i create my own website of typing speed?
 And here i am xD
 
-https://neklam161.github.io/Typing-Game-v1.0/
+https://neklam161.github.io/Typing-Game/
